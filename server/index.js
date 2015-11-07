@@ -66,6 +66,7 @@ function parse (req, opts) {
 		.on("file",  function (field, file) {
 			// Clean up files after the request.
 			file._writeStream.once("close", function () { if (!file._readStream) fs.unlink(file.path) });
+			file.lastModified = Number(file.lastModifiedDate);
 			qSet(files, field, file);
 		})
 		.parse(req.original);

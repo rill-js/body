@@ -27,8 +27,8 @@ module.exports = function (opts) {
 			return next();
 		}
 
-		req.body  = req.original.body;
-		req.files = req.original.files;
+		req.body  = req.original.body || {};
+		req.files = req.original.files || {};
 
 		return next();
 	};
