@@ -1,0 +1,35 @@
+{
+  "name": "@rill/body",
+  "version": "0.1.0",
+  "description": "Isomorphic body parsing for Rill.",
+  "author": "Dylan Piercey <pierceydylan@gmail.com>",
+  "main": "server/index.js",
+  "browser": "client/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rill-js/body"
+  },
+  "keywords": [
+    "universal",
+    "isomorphic",
+    "body",
+    "parser",
+    "form",
+    "data",
+    "json",
+    "rill"
+  ],
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.1.3",
+    "mocha": "^2.3.3",
+    "rill": "rill-js/rill",
+    "supertest": "^1.1.0"
+  },
+  "dependencies": {
+    "bytes": "^2.1.0",
+    "formidable": "^1.0.17",
+    "q-set": "^0.1.6"
+  }
+}
