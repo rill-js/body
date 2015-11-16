@@ -1,6 +1,6 @@
 {
   "name": "@rill/body",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Isomorphic body parsing for Rill.",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
   "main": "server/index.js",

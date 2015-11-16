@@ -21,6 +21,7 @@ module.exports = function (opts) {
 		var req    = ctx.req;
 		var method = req.method.toUpperCase();
 
+		if (req.body || req.files) return next();
 		if (opts.strict && ignoreMethod[method]) {
 			req.body  = {};
 			req.files = {};
