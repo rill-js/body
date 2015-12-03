@@ -1,14 +1,12 @@
 var fs         = require("fs");
 var assert     = require("assert");
 var Rill       = require("rill");
-var agent      = require("./agent");
+var agent      = require("supertest");
 var bodyParser = require("../server");
 
 describe("Rill/Body", function () {
-	after(agent.clear);
-
 	it("should work on the server", function (done) {
-		var request = agent.create(
+		var request = agent(
 			Rill()
 				.use(bodyParser({ uploadDir: __dirname }))
 				.post("/", respond(200, function (ctx, next) {
@@ -18,6 +16,7 @@ describe("Rill/Body", function () {
 					assert.deepEqual(body, { a: { b: { c: "1" } } });
 					assert("test" in files);
 				}))
+				.listen()
 		);
 
 		request
