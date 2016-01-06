@@ -1,6 +1,6 @@
 {
   "name": "@rill/body",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Isomorphic body parsing for Rill.",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
   "main": "server/index.js",
@@ -24,12 +24,12 @@
     "gulp": "^3.9.0",
     "gulp-mocha": "^2.2.0",
     "mocha": "^2.3.4",
-    "rill": "^0.2.8",
+    "rill": "^0.4.13",
     "supertest": "^1.1.0"
   },
   "dependencies": {
     "bytes": "^2.2.0",
     "formidable": "^1.0.17",
-    "q-set": "^1.1.1"
+    "q-set": "^1.3.1"
   }
 }
