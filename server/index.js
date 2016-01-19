@@ -44,7 +44,6 @@ function parse (req, opts) {
 	var form      = new IncomingForm();
 	var body      = {};
 	var files     = {};
-	var tempFiles = {};
 
 	// Formidable options.
 	form.type           = opts.encoding;
@@ -56,7 +55,6 @@ function parse (req, opts) {
 	return new Promise(function (accept, reject) {
 		form
 		.on("end", function () {
-			tempFiles = null;
 			req.body  = body;
 			req.files = files;
 			form.removeAllListeners();
@@ -69,10 +67,8 @@ function parse (req, opts) {
 		.on("file",  function (field, file) {
 			// Clean up files after the request.
 			file._writeStream.once("close", function () { if (!file._readStream) fs.unlink(file.path) });
-			file.lastModified = Number(file.lastModifiedDate);
-			tempFiles[field] = files[field] || [];
-			tempFiles[field].push(file);
-			qSet(files, field, tempFiles);
+			file.lastModified = new Date(file.lastModifiedDate);
+			qSet(files, field, file);
 		})
 		.parse(req.original);
 	});
