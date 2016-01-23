@@ -71,8 +71,8 @@ function parse (req, opts) {
 			var path = file.path;
 			var read = fs.createReadStream(path);
 			read.once("end", function () { fs.unlink(path); })
-			file.pipe = read.pipe.bind(read);
-			file.lastModified = new Date(file.lastModifiedDate);
+			file.pipe             = read.pipe.bind(read);
+			file.lastModifiedDate = new Date(file.lastModifiedDate);
 			set(files, field, file);
 		})
 		.parse(req.original);
