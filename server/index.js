@@ -68,7 +68,10 @@ function parse (req, opts) {
 		})
 		.on("file",  function (field, file) {
 			// Clean up files after the request.
-			file._writeStream.once("close", function () { if (!file._readStream) fs.unlink(file.path) });
+			var path = file.path;
+			var read = fs.createReadStream(path);
+			read.once("end", function () { fs.unlink(path); })
+			file.pipe = read.pipe.bind(read);
 			file.lastModified = new Date(file.lastModifiedDate);
 			set(files, field, file);
 		})
@@ -86,20 +89,4 @@ File.prototype.toJSON = function () {
 		type:             this.type,
 		lastModifiedDate: this.lastModifiedDate
 	};
-};
-
-/**
- * Allow copying files as read streams.
- */
-File.prototype.pipe = function (data) {
-	if (!this._readStream) {
-		var path  = this.path;
-		var write = this._writeStream;
-		var read  = this._readStream = fs.createReadStream(path);
-		read.pause();
-		read.once("close", function () { fs.unlink(path); })
-		write.once("close", function () { read.resume(); });
-	}
-
-	return this._readStream.pipe(data);
 };
