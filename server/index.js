@@ -2,6 +2,7 @@ var fs           = require("fs");
 var os           = require("os");
 var bytes        = require("bytes");
 var qSet         = require("q-set");
+var fSet         = qSet.flat;
 var IncomingForm = require("formidable").IncomingForm;
 var File         = require("formidable/lib/file");
 var ignoreMethod = {
@@ -41,6 +42,7 @@ module.exports = function (opts) {
  * Parse a request body using formidable.
  */
 function parse (req, opts) {
+	var set       = opts.flat ? fSet : qSet;
 	var form      = new IncomingForm();
 	var body      = {};
 	var files     = {};
@@ -64,7 +66,7 @@ function parse (req, opts) {
 		})
 		.on("error", reject)
 		.on("field", function (field, value) {
-			qSet(body, field, value);
+			set(body, field, value);
 		})
 		.on("file",  function (field, file) {
 			// Clean up files after the request.
@@ -72,7 +74,7 @@ function parse (req, opts) {
 			file.lastModified = Number(file.lastModifiedDate);
 			tempFiles[field] = files[field] || [];
 			tempFiles[field].push(file);
-			qSet(files, field, tempFiles);
+			set(files, field, tempFiles);
 		})
 		.parse(req.original);
 	});

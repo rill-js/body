@@ -32,7 +32,9 @@ app.use(function ({ req, res }, next) {
 	// Max number of fields (0 for unlimited).
 	limitFields: 1000,
 	// Ignore form data parsing on GET, HEAD and DELETE requests.
-	strict: true
+	strict: true,
+	// When flat is false fields such as a[b][c] won't be expanded.
+	flat: false
 }
 ```
 
