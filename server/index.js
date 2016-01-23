@@ -70,7 +70,7 @@ function parse (req, opts) {
 			// Clean up files after the request.
 			file._writeStream.once("close", function () { if (!file._readStream) fs.unlink(file.path) });
 			file.lastModified = new Date(file.lastModifiedDate);
-			set(files, field, tempFiles);
+			set(files, field, file);
 		})
 		.parse(req.original);
 	});
