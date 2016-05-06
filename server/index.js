@@ -44,6 +44,8 @@ module.exports = function (opts) {
  */
 function parse (req, opts) {
   var set = opts.flat ? fSet : qSet
+  var transformField = typeof opts.transformField === 'function' ? opts.transformField : identity
+  var transformFile = typeof opts.transformFile === 'function' ? opts.transformFile : identity
   var form = new IncomingForm()
   var body = {}
   var files = {}
@@ -65,7 +67,7 @@ function parse (req, opts) {
       })
       .on('error', reject)
       .on('field', function (field, value) {
-        set(body, field, value)
+        set(body, field, transformField(field, value))
       })
       .on('file', function (field, file) {
         // Clean up files after the request.
@@ -74,7 +76,7 @@ function parse (req, opts) {
         read.once('end', function () { fs.unlink(path) })
         file.pipe = read.pipe.bind(read)
         file.lastModifiedDate = new Date(file.lastModifiedDate)
-        set(files, field, file)
+        set(files, field, transformFile(field, file))
       })
       .parse(req.original)
   })
@@ -91,3 +93,8 @@ File.prototype.toJSON = function () {
     lastModifiedDate: this.lastModifiedDate
   }
 }
+
+/**
+ * Returns the value given (noop transform)
+ */
+function identity (field, value) { return value }

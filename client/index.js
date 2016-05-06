@@ -35,6 +35,16 @@ module.exports = function (opts) {
     req.body = req.original.body || {}
     req.files = req.original.files || {}
 
+    // Run all body fields through a transform if needed.
+    if (typeof opts.transformField === 'function') {
+      for (key in body) body[key] = opts.transformField(key, body[key])
+    }
+
+    // Run all file fields through a transform if needed.
+    if (typeof opts.transformFile === 'function') {
+      for (key in files) files[key] = opts.transformFile(key, files[key])
+    }
+
     // Use qSet to unflatten the body and files.
     if (!opts.flat) {
       var key
@@ -42,7 +52,9 @@ module.exports = function (opts) {
       var files = req.files
       req.body = {}
       req.files = {}
+      // Unflatten body keys.
       for (key in body) qSet(req.body, key, body[key])
+      // Unflatten file keys.
       for (key in files) qSet(req.files, key, files[key])
     }
 

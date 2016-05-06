@@ -37,7 +37,11 @@ app.use(function ({ req, res }, next) {
 	// Ignore form data parsing on GET, HEAD and DELETE requests.
 	strict: true,
 	// When flat is false fields such as a[b][c] won't be expanded.
-	flat: false
+	flat: false,
+	// A function that can modify all fields parsed.
+	transformField: (field, value)=> ...,
+	// A function that can modify all files parsed.
+	transformFile: (field, file)=> ...,
 }
 ```
 
