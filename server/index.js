@@ -53,7 +53,7 @@ function parse (req, opts) {
   // Formidable options.
   form.type = opts.encoding
   form.maxFields = opts.fieldLimit
-  form.maxFieldSize = opts.limit
+  form.maxFieldsSize = opts.limit
   form.keepExtensions = false
   form.multiples = true
 
