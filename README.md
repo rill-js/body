@@ -1,12 +1,37 @@
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![Chat about Rill at https://gitter.im/rill-js/rill](https://badges.gitter.im/rill-js/rill.svg)](https://gitter.im/rill-js/rill?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<h1 align="center">
+  <!-- Logo -->
+  <img src="https://raw.githubusercontent.com/rill-js/rill/master/Rill-Icon.jpg" alt="Rill"/>
+  <br/>
+  @rill/body
+	<br/>
 
-# Rill Body
-Isomorphic form data parser for Rill.
+  <!-- Stability -->
+  <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
+    <img src="https://img.shields.io/badge/stability-stable-brightgreen.svg?style=flat-square" alt="API stability"/>
+  </a>
+  <!-- Standard -->
+  <a href="https://github.com/feross/standard">
+    <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square" alt="Standard"/>
+  </a>
+  <!-- NPM version -->
+  <a href="https://npmjs.org/package/@rill/body">
+    <img src="https://img.shields.io/npm/v/@rill/body.svg?style=flat-square" alt="NPM version"/>
+  </a>
+  <!-- Downloads -->
+  <a href="https://npmjs.org/package/@rill/body">
+    <img src="https://img.shields.io/npm/dm/@rill/body.svg?style=flat-square" alt="Downloads"/>
+  </a>
+  <!-- Gitter Chat -->
+  <a href="https://gitter.im/rill-js/rill">
+    <img src="https://img.shields.io/gitter/room/rill-js/rill.svg?style=flat-square" alt="Gitter Chat"/>
+  </a>
+</h1>
+
+Isomorphic request body parser for Rill.
+Uses [formidable](http://github.com/felixge/node-formidable) to parse form data.
 
 # Installation
 
-#### Npm
 ```console
 npm install @rill/body
 ```
@@ -14,14 +39,14 @@ npm install @rill/body
 # Example
 
 ```javascript
-const app        = require("rill")();
-const bodyParser = require("@rill/body");
+const app = require("rill")()
+const bodyParser = require("@rill/body")
 
-app.use(bodyParser());
+app.use(bodyParser())
 app.use(function ({ req, res }, next) {
-	req.body; // Object containing parsed form fields.
-	req.files; // Object of form fields with files.
-});
+	req.body // Object containing parsed form fields.
+	req.files // Object of form fields with files.
+})
 ```
 
 # API Options / Defaults.
