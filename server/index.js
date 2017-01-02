@@ -1,6 +1,7 @@
 'use strict'
 
 var fs = require('fs')
+var os = require('os')
 var bytes = require('bytes')
 var qSet = require('q-set')
 var fSet = qSet.flat
@@ -46,7 +47,7 @@ function parse (req, opts) {
   var set = opts.flat ? fSet : qSet
   var transformField = typeof opts.transformField === 'function' ? opts.transformField : identity
   var transformFile = typeof opts.transformFile === 'function' ? opts.transformFile : identity
-  var form = new IncomingForm()
+  var form = new IncomingForm({ uploadDir: os.tmpdir ? os.tmpdir() : os.tmpDir() })
   var body = {}
   var files = {}
 
