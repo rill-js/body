@@ -12,10 +12,10 @@
   },
   "devDependencies": {
     "mocha": "^3.2.0",
-    "rill": "^2.5.1",
-    "snazzy": "^5.0.0",
-    "standard": "^8.6.0",
-    "supertest": "^2.0.1"
+    "rill": "^5.0.14",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.3",
+    "supertest": "^3.0.0"
   },
   "homepage": "https://github.com/rill-js/body",
   "keywords": [

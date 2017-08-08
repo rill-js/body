@@ -47,7 +47,7 @@ function parse (req, opts) {
   var set = opts.flat ? fSet : qSet
   var transformField = typeof opts.transformField === 'function' ? opts.transformField : identity
   var transformFile = typeof opts.transformFile === 'function' ? opts.transformFile : identity
-  var form = new IncomingForm({ uploadDir: os.tmpdir ? os.tmpdir() : os.tmpDir() })
+  var form = new IncomingForm({ uploadDir: os.tmpdir ? os.tmpdir() : os.tmpDir() }) // eslint-disable-line 
   var body = {}
   var files = {}
 

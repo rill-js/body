@@ -22,6 +22,7 @@ module.exports = function (opts) {
   }
 
   return function parseBody (ctx, next) {
+    var key
     var req = ctx.req
     var method = req.method.toUpperCase()
 
@@ -32,8 +33,8 @@ module.exports = function (opts) {
       return next()
     }
 
-    req.body = req.original.body || {}
-    req.files = req.original.files || {}
+    var body = req.body = req.original.body || {}
+    var files = req.files = req.original.files || {}
 
     // Run all body fields through a transform if needed.
     if (typeof opts.transformField === 'function') {
@@ -47,9 +48,6 @@ module.exports = function (opts) {
 
     // Use qSet to unflatten the body and files.
     if (!opts.flat) {
-      var key
-      var body = req.body
-      var files = req.files
       req.body = {}
       req.files = {}
       // Unflatten body keys.
