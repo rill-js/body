@@ -1,7 +1,7 @@
 {
   "name": "@rill/body",
   "description": "Isomorphic body parsing for Rill.",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Dylan Piercey <pierceydylan@gmail.com>",
   "browser": "client/index.js",
   "bugs": "https://github.com/rill-js/body/issues",
