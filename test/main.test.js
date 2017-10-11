@@ -15,7 +15,7 @@ describe('Rill/Body', function () {
         assert.deepEqual(body, { a: { b: { c: '1' } } })
         assert.equal(typeof body.a.b.c, 'string')
         assert('test' in files)
-      })).listen())
+      })).listen().unref())
 
     request
       .post('/')
@@ -36,7 +36,7 @@ describe('Rill/Body', function () {
         assert.deepEqual(body, { a: { b: { c: 1, d: 'hi' } } })
         assert.equal(typeof body.a.b.c, 'number')
         assert('test' in files)
-      })).listen())
+      })).listen().unref())
 
     request
       .post('/')

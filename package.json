@@ -6,13 +6,13 @@
   "browser": "client/index.js",
   "bugs": "https://github.com/rill-js/body/issues",
   "dependencies": {
-    "bytes": "^2.4.0",
+    "bytes": "^3.0.0",
     "formidable": "^1.0.17",
     "q-set": "^1.4.4"
   },
   "devDependencies": {
-    "mocha": "^3.2.0",
-    "rill": "^5.0.14",
+    "mocha": "^4.0.1",
+    "rill": "^6.0.0",
     "snazzy": "^7.0.0",
     "standard": "^10.0.3",
     "supertest": "^3.0.0"
